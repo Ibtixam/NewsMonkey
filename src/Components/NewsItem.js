@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function NewsItem(props) {
+const NewsItem = (props) => {
   let { myTitle, mydesc, ImgUrl, NewsUrl, author, date, source } = props;
   return (
     <div className="card" id="news-card" style={{ width: "21rem" }}>
@@ -35,4 +35,6 @@ export default function NewsItem(props) {
       </div>
     </div>
   );
-}
+};
+
+export default NewsItem;

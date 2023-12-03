@@ -4,7 +4,7 @@ import Spinner from "./Spinner";
 import PropTypes from "prop-types";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-export default function News(props) {
+const News = (props) => {
   const capitalize = (word) => {
     const lower = word.toLowerCase();
     return lower.charAt(0).toUpperCase() + lower.slice(1);
@@ -35,7 +35,7 @@ export default function News(props) {
     // eslint-disable-next-line
   }, []);
 
-  const fetchMoreData = async (e) => {
+  const fetchMoreData = async () => {
     setpage(page + 1);
     setTimeout(async () => {
       const url = `https://newsapi.org/v2/top-headlines?country=us&category=${props.category}&apiKey=c2ce35353b6444cbbb82cbac5ad80e8f&page=${page}&pagesize=${props.pageSize}`;
@@ -49,7 +49,7 @@ export default function News(props) {
   return (
     <React.Fragment>
       <h1
-        noScroll={fetchMoreData}
+        onScroll={fetchMoreData}
         className="text-center"
         style={{ margin: "50px 0", marginTop: "100px" }}
       >
@@ -85,9 +85,11 @@ export default function News(props) {
       </InfiniteScroll>
     </React.Fragment>
   );
-}
+};
 
 News.propTypes = {
   category: PropTypes.string,
   pageSize: PropTypes.number,
 };
+
+export default News;
